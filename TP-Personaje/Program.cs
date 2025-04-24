@@ -1,0 +1,72 @@
+﻿using TP_Personaje;
+
+Personaje Jugador = new();
+Personaje Bot = new();
+
+void CargarPersonaje (Personaje personaje)
+{
+    Console.WriteLine("Ingrese Color");
+    personaje.Color = Console.ReadLine();
+
+    Console.WriteLine("Ingrese Vida");
+    personaje.Vida = int.Parse(Console.ReadLine());
+
+    Console.WriteLine("Ingrese Defensa");
+    personaje.Defensa = int.Parse(Console.ReadLine());
+
+    Console.WriteLine("Ingrese Fuerza");
+    personaje.Fuerza = int.Parse(Console.ReadLine());
+
+    Console.WriteLine("Ingrese Mana");
+    personaje.Mana = int.Parse(Console.ReadLine());
+}
+
+CargarPersonaje(Jugador);
+Console.Clear();
+CargarPersonaje(Bot);
+Console.Clear();
+
+while (Jugador.Vida > 0 && Bot.Vida > 0)
+{
+    Console.WriteLine("Jugador HUD");
+    Console.WriteLine($"Color: {Jugador.Color} | Vida: {Jugador.Vida} | Defensa: {Jugador.Defensa} | Fuerza: {Jugador.Fuerza} | Maná: {Jugador.Mana}");
+    Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------------");
+    Console.WriteLine("Bot HUD");
+    Console.WriteLine($"Color: {Bot.Color} | Vida: {Bot.Vida} | Defensa: {Bot.Defensa} | Fuerza: {Bot.Fuerza} | Maná: {Bot.Mana}");
+    Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------------");
+    Console.WriteLine($"1 - Cambiar Color / 2 - Recibir Daño / 3 - Atacar");
+    Console.WriteLine();
+
+    int Elección = int.Parse(Console.ReadLine());
+    Console.Clear();
+
+    switch (Elección)
+    {
+        case 1:
+            string NuevoColor;
+            Console.WriteLine("Ingrese Nuevo Color");
+            NuevoColor = Console.ReadLine();
+            Jugador.CambiarColor(NuevoColor);
+            break;
+        case 2:
+            int FuerzaDeAtaque;
+            Console.WriteLine("Ingrese Daño Recibido");
+            FuerzaDeAtaque = int.Parse(Console.ReadLine());
+            Jugador.RecibirDaño(FuerzaDeAtaque);
+            break;
+        case 3:
+            Jugador.Atacar(Bot);
+            break;
+    }
+}
+
+if (Jugador.Vida <= 0)
+{
+    Console.WriteLine("Moriste XD");
+}
+else if (Bot.Vida <= 0)
+{
+    Console.WriteLine("Ganaste :D");
+}
+
+Console.ReadKey();
