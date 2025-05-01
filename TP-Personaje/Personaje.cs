@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 
 namespace TP_Personaje
 {
-    internal class Personaje
+    public class Personaje
     {
         public string Color { get; set; }
         public int Vida { get; set; }
+        public int Mana { get; set; }
         public int Defensa { get; set; }
         public int Fuerza { get; set; }
-        public int Mana { get; set; }
+        public int VidaMax { get; set; }
+        public int ManaMax { get; set; }
 
         public void CambiarColor(string NuevoColor)
         {
