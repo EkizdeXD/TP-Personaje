@@ -2,8 +2,10 @@
 
 Personaje Jugador = new();
 Personaje Bot = new();
+PocionVida PocionVida = new();
+PocionMana PocionMana = new();
 
-void CargarPersonaje (Personaje personaje)
+void CargarPersonaje(Personaje personaje)
 {
     Console.WriteLine("Ingrese Color");
     personaje.Color = Console.ReadLine();
@@ -60,6 +62,26 @@ while (Jugador.Vida > 0 && Bot.Vida > 0)
             Console.WriteLine("Ingrese Daño Recibido");
             FuerzaDeAtaque = int.Parse(Console.ReadLine());
             Jugador.RecibirDaño(FuerzaDeAtaque);
+            break;
+        case 4:
+            Console.WriteLine("1 - Poción De Vida / 2 - Poción De Maná");
+            int Elección2 = int.Parse(Console.ReadLine());
+            if (Elección2 == 1)
+            {
+                Console.WriteLine("Ingrese El Valor Mínimo Para La Vida");
+                PocionVida.Minimo = int.Parse(Console.ReadLine());
+                Console.WriteLine("Ingrese El Valor Máximo Para La Vida");
+                PocionVida.Maximo = int.Parse(Console.ReadLine());
+                PocionVida.Usar(Jugador);
+            }
+            else if (Elección2 == 2)
+            {
+                Console.WriteLine("Ingrese El Valor Mínimo Para El Maná");
+                PocionMana.Minimo = int.Parse(Console.ReadLine());
+                Console.WriteLine("Ingrese El Valor Máximo Para El Maná");
+                PocionMana.Maximo = int.Parse(Console.ReadLine());
+                PocionMana.Usar(Jugador);
+            }
             break;
     }
 }

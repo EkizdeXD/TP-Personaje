@@ -29,7 +29,7 @@ namespace TP_Personaje
             int Daño = FuerzaDeAtaque - Defensa;
             if (Daño > 0)
             {
-                Vida = Vida - Daño;                
+                Vida = Vida - Daño;
                 return Daño;
             }
             return 0;
