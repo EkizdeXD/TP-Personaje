@@ -15,6 +15,7 @@ namespace TP_Personaje
         public int Fuerza { get; set; }
         public int VidaMax { get; set; }
         public int ManaMax { get; set; }
+        public Inventario Inventario { get; set; } = new Inventario();
 
         public void CambiarColor(string NuevoColor)
         {

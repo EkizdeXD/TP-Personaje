@@ -24,6 +24,11 @@ namespace TP_Personaje
             personaje.Vida = VidaRestaurada;
             return VidaRestaurada;
         }
+
+        public override string ToString()
+        {
+            return $"Poción de Vida: Restaura entre {Minimo} y {Maximo} puntos de vida.";
+        }
     }
 }
 

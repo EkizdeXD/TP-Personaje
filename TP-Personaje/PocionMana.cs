@@ -24,5 +24,10 @@ namespace TP_Personaje
             personaje.Mana = ManaRestaurado;
             return ManaRestaurado;
         }
+
+        public override string ToString()
+        {
+            return $"Poción de Mana: Restaura entre {Minimo} y {Maximo} puntos de mana.";
+        }
     }
 }

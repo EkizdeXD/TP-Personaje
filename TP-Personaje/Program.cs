@@ -1,9 +1,9 @@
-﻿using TP_Personaje;
+﻿using System.Security.Cryptography.X509Certificates;
+using TP_Personaje;
 
 Personaje Jugador = new();
 Personaje Bot = new();
-PocionVida PocionVida = new();
-PocionMana PocionMana = new();
+Inventario Inventario = new Inventario();
 
 void CargarPersonaje(Personaje personaje)
 {
@@ -25,6 +25,44 @@ void CargarPersonaje(Personaje personaje)
     personaje.VidaMax = personaje.Vida;
 
     personaje.ManaMax = personaje.Mana;
+
+    personaje.Inventario.Jugador = personaje;
+
+    PocionVida pocionVida = CrearPocionVida();
+    PocionMana pocionMana = CrearPocionMana();
+
+    personaje.Inventario.AgregarItem(pocionVida);
+    personaje.Inventario.AgregarItem(pocionMana);
+}
+
+PocionVida CrearPocionVida()
+{
+    PocionVida PocionVida = new();
+    Console.WriteLine("Ingrese El Valor Mínimo Para La Vida");
+    PocionVida.Minimo = int.Parse(Console.ReadLine());
+    Console.WriteLine("Ingrese El Valor Máximo Para La Vida");
+    PocionVida.Maximo = int.Parse(Console.ReadLine());
+    return PocionVida;
+}
+
+PocionMana CrearPocionMana()
+{
+    PocionMana PocionMana = new();
+    Console.WriteLine("Ingrese El Valor Mínimo Para El Maná");
+    PocionMana.Minimo = int.Parse(Console.ReadLine());
+    Console.WriteLine("Ingrese El Valor Máximo Para El Maná");
+    PocionMana.Maximo = int.Parse(Console.ReadLine());
+    return PocionMana;
+}
+
+void MostrarInventario(Personaje personaje)
+{
+    int i = 1;
+    Console.WriteLine("Inventario:");
+    foreach (Item item in personaje.Inventario.Items)
+    {
+        Console.WriteLine($"{i}: {item}");
+    }
 }
 
 CargarPersonaje(Jugador);
@@ -35,6 +73,7 @@ Console.Clear();
 while (Jugador.Vida > 0 && Bot.Vida > 0)
 {
     Console.WriteLine("Jugador HUD");
+    MostrarInventario(Jugador);
     Console.WriteLine($"Color: {Jugador.Color} | Vida: {Jugador.Vida} | Maná: {Jugador.Mana} | Defensa: {Jugador.Defensa} | Fuerza: {Jugador.Fuerza}");
     Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------------");
     Console.WriteLine("Bot HUD");
@@ -64,28 +103,21 @@ while (Jugador.Vida > 0 && Bot.Vida > 0)
             Jugador.RecibirDaño(FuerzaDeAtaque);
             break;
         case 4:
-            Console.WriteLine("1 - Poción De Vida / 2 - Poción De Maná");
+            MostrarInventario(Jugador);
             int Elección2 = int.Parse(Console.ReadLine());
             if (Elección2 == 1)
             {
-                Console.WriteLine("Ingrese El Valor Mínimo Para La Vida");
-                PocionVida.Minimo = int.Parse(Console.ReadLine());
-                Console.WriteLine("Ingrese El Valor Máximo Para La Vida");
-                PocionVida.Maximo = int.Parse(Console.ReadLine());
-                PocionVida.Usar(Jugador);
+                PocionVida pocionVida = CrearPocionVida();
+                pocionVida.Usar(Jugador);
             }
             else if (Elección2 == 2)
             {
-                Console.WriteLine("Ingrese El Valor Mínimo Para El Maná");
-                PocionMana.Minimo = int.Parse(Console.ReadLine());
-                Console.WriteLine("Ingrese El Valor Máximo Para El Maná");
-                PocionMana.Maximo = int.Parse(Console.ReadLine());
-                PocionMana.Usar(Jugador);
+                PocionMana pocionMana = CrearPocionMana();
+                pocionMana.Usar(Jugador);
             }
             break;
     }
 }
-
 if (Jugador.Vida <= 0)
 {
     Console.WriteLine("Moriste XD");
