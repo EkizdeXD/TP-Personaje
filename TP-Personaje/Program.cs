@@ -57,10 +57,11 @@ PocionMana CrearPocionMana()
 
 void MostrarInventario(Personaje personaje)
 {
-    int i = 1;
+    int i = 0;
     Console.WriteLine("Inventario:");
     foreach (Item item in personaje.Inventario.Items)
     {
+        i = i + 1;
         Console.WriteLine($"{i}: {item}");
     }
 }
@@ -105,16 +106,9 @@ while (Jugador.Vida > 0 && Bot.Vida > 0)
         case 4:
             MostrarInventario(Jugador);
             int Elección2 = int.Parse(Console.ReadLine());
-            if (Elección2 == 1)
-            {
-                PocionVida pocionVida = CrearPocionVida();
-                pocionVida.Usar(Jugador);
-            }
-            else if (Elección2 == 2)
-            {
-                PocionMana pocionMana = CrearPocionMana();
-                pocionMana.Usar(Jugador);
-            }
+            Pocion pocionSeleccionada = Jugador.Inventario.Items[Elección2 - 1] as Pocion;
+            pocionSeleccionada.Usar(Jugador);
+            Jugador.Inventario.QuitarItem(pocionSeleccionada);
             break;
     }
 }
