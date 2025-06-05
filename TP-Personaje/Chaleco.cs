@@ -8,26 +8,23 @@ namespace TP_Personaje
 {
     public class Chaleco : Equipo
     {
-        public void AumentarDefensa(Personaje personaje)
-        {
-            Console.WriteLine("Ingrese el valor para la Defensa del Chaleco");
-            int DefensaAumentada = int.Parse(Console.ReadLine());
+        public int Defensa { get; set; }
 
-            personaje.Defensa = personaje.Defensa + DefensaAumentada;
-        }
         public override void Desequipar(Personaje jugador)
         {
             Equipado = false;
+            jugador.Defensa = jugador.Defensa - Defensa;
         }
 
         public override void Equipar(Personaje jugador)
         {
             Equipado = true;
+            jugador.Defensa = jugador.Defensa + Defensa;
         }
 
         public override string ToString()
         {
-            return $"Chaleco: Aumenta la defensa en {AumentarDefensa}.";
+            return $"Chaleco: Aumenta la defensa en {Defensa}.";
         }
     }
 }

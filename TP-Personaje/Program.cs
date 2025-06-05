@@ -33,6 +33,10 @@ void CargarPersonaje(Personaje personaje)
 
     personaje.Inventario.AgregarItem(pocionVida);
     personaje.Inventario.AgregarItem(pocionMana);
+
+    Casco casco = new Casco();
+    casco.Defensa = 150;
+    personaje.Inventario.AgregarItem(casco);
 }
 
 PocionVida CrearPocionVida()
@@ -111,11 +115,21 @@ while (Jugador.Vida > 0 && Bot.Vida > 0)
             Jugador.Inventario.QuitarItem(pocionSeleccionada);
             break;
         case 5:
+            MostrarInventario(Jugador);
             int Elección3 = int.Parse(Console.ReadLine());
-            Equipo equipoSeleccionado = Jugador.Inventario.Items[Elección3 - 1] as Equipo;
+            Item itemSeleccionado = Jugador.Inventario.Items[Elección3 - 1];
+            if (itemSeleccionado is IEquipable equipo)
+            {
+                equipo.Equipar(Jugador);
+                Jugador.Inventario.QuitarItem(equipo as Equipo);
+            }
             break;
         case 6:
-
+            MostrarInventario(Jugador);
+            int Elección4 = int.Parse(Console.ReadLine());
+            Equipo equipoSeleccionado2 = Jugador.Inventario.Items[Elección4 - 1] as Equipo;
+            equipoSeleccionado2.Desequipar(Jugador);
+            Jugador.Inventario.AgregarItem(equipoSeleccionado2);
             break;
     }
 }

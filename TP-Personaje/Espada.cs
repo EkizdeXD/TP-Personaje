@@ -8,27 +8,23 @@ namespace TP_Personaje
 {
     public class Espada : Equipo
     {
-        public void AumentarDaño(Personaje personaje)
-        {
-            Console.WriteLine("Ingrese el valor para el Daño de la Espada");
-            int DañoAumentado = int.Parse(Console.ReadLine());
-
-            personaje.Fuerza = personaje.Fuerza + DañoAumentado;
-        }
+        public int Daño { get; set; }
 
         public override void Desequipar(Personaje jugador)
         {
             Equipado = false;
+            jugador.Fuerza = jugador.Fuerza - Daño;
         }
 
         public override void Equipar(Personaje jugador)
         {
             Equipado = true;
+            jugador.Fuerza = jugador.Fuerza + Daño;
         }
 
         public override string ToString()
         {
-            return $"Espada: Aumenta el daño en {AumentarDaño}.";
+            return $"Espada: Aumenta el daño en {Daño}.";
         }
     }
 }
