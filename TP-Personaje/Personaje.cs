@@ -8,7 +8,7 @@ namespace TP_Personaje
 {
     public class Personaje
     {
-        public string Color { get; set; }
+        public string Color { get; set; } = null!;
         public int Vida { get; set; }
         public int Mana { get; set; }
         public int Defensa { get; set; }

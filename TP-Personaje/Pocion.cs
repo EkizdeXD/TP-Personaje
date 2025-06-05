@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 
 namespace TP_Personaje
 {
-    public abstract class Pocion : Item
+    public abstract class Pocion : Item, IUsable
     {
         public int Minimo { get; set; }
         public int Maximo { get; set; }
+
+        public abstract int Usar(Personaje Jugador);
     }
 }

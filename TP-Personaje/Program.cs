@@ -80,7 +80,7 @@ while (Jugador.Vida > 0 && Bot.Vida > 0)
     Console.WriteLine("Bot HUD");
     Console.WriteLine($"Color: {Bot.Color} | Vida: {Bot.Vida} | Maná: {Bot.Mana} | Defensa: {Bot.Defensa} | Fuerza: {Bot.Fuerza}");
     Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------------");
-    Console.WriteLine($"1 - Cambiar Color / 2 - Atacar / 3 - Recibir Daño / 4 - Usar Poción");
+    Console.WriteLine($"1 - Cambiar Color / 2 - Atacar / 3 - Recibir Daño / 4 - Usar Ítem / 5 - Equipar Ítem / 6 - Desequipar Ítem");
     Console.WriteLine();
 
     int Elección = int.Parse(Console.ReadLine());

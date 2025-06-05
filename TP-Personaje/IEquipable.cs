@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace TP_Personaje
 {
-    public class Item : Inventario
+    public interface IEquipable
     {
-        public Inventario? Inventario { get; set; }
+        void Equipar(Personaje jugador);
+        void Desequipar(Personaje jugador);
     }
 }

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace TP_Personaje
 {
-    public class Item : Inventario
+    public interface IUsable
     {
-        public Inventario? Inventario { get; set; }
+        int Usar(Personaje Jugador);
     }
 }
