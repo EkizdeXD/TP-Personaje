@@ -27,7 +27,7 @@ namespace TP_Personaje
 
         public override string ToString()
         {
-            return $"Poción de Mana: Restaura entre {Minimo} y {Maximo} puntos de mana.";
+            return $"Poción de Mana: Restaura entre {Minimo} y {Maximo} puntos de Maná.";
         }
     }
 }

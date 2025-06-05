@@ -38,9 +38,9 @@ void CargarPersonaje(Personaje personaje)
 PocionVida CrearPocionVida()
 {
     PocionVida PocionVida = new();
-    Console.WriteLine("Ingrese El Valor Mínimo Para La Vida");
+    Console.WriteLine("Ingrese El Valor Mínimo Para La Poción de Vida");
     PocionVida.Minimo = int.Parse(Console.ReadLine());
-    Console.WriteLine("Ingrese El Valor Máximo Para La Vida");
+    Console.WriteLine("Ingrese El Valor Máximo Para La Poción de Vida");
     PocionVida.Maximo = int.Parse(Console.ReadLine());
     return PocionVida;
 }
@@ -48,9 +48,9 @@ PocionVida CrearPocionVida()
 PocionMana CrearPocionMana()
 {
     PocionMana PocionMana = new();
-    Console.WriteLine("Ingrese El Valor Mínimo Para El Maná");
+    Console.WriteLine("Ingrese El Valor Mínimo Para El Poción de Maná");
     PocionMana.Minimo = int.Parse(Console.ReadLine());
-    Console.WriteLine("Ingrese El Valor Máximo Para El Maná");
+    Console.WriteLine("Ingrese El Valor Máximo Para El Poción de Maná");
     PocionMana.Maximo = int.Parse(Console.ReadLine());
     return PocionMana;
 }
@@ -109,6 +109,13 @@ while (Jugador.Vida > 0 && Bot.Vida > 0)
             Pocion pocionSeleccionada = Jugador.Inventario.Items[Elección2 - 1] as Pocion;
             pocionSeleccionada.Usar(Jugador);
             Jugador.Inventario.QuitarItem(pocionSeleccionada);
+            break;
+        case 5:
+            int Elección3 = int.Parse(Console.ReadLine());
+            Equipo equipoSeleccionado = Jugador.Inventario.Items[Elección3 - 1] as Equipo;
+            break;
+        case 6:
+
             break;
     }
 }

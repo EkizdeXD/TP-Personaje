@@ -24,5 +24,10 @@ namespace TP_Personaje
         {
             Equipado = true;
         }
+
+        public override string ToString()
+        {
+            return $"Casco: Aumenta la defensa en {AumentarDefensa}.";
+        }
     }
 }

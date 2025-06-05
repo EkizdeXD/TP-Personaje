@@ -25,5 +25,10 @@ namespace TP_Personaje
         {
             Equipado = true;
         }
+
+        public override string ToString()
+        {
+            return $"Espada: Aumenta el daño en {AumentarDaño}.";
+        }
     }
 }

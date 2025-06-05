@@ -27,7 +27,7 @@ namespace TP_Personaje
 
         public override string ToString()
         {
-            return $"Poción de Vida: Restaura entre {Minimo} y {Maximo} puntos de vida.";
+            return $"Poción de Vida: Restaura entre {Minimo} y {Maximo} puntos de Vida.";
         }
     }
 }
