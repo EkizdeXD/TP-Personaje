@@ -37,6 +37,14 @@ void CargarPersonaje(Personaje personaje)
     Casco casco = new Casco();
     casco.Defensa = 150;
     personaje.Inventario.AgregarItem(casco);
+
+    Chaleco chaleco = new Chaleco();
+    chaleco.Defensa = 200;
+    personaje.Inventario.AgregarItem(chaleco);
+
+    Espada espada = new Espada();
+    espada.Daño = 150;
+    personaje.Inventario.AgregarItem(espada);
 }
 
 PocionVida CrearPocionVida()
@@ -110,26 +118,42 @@ while (Jugador.Vida > 0 && Bot.Vida > 0)
         case 4:
             MostrarInventario(Jugador);
             int Elección2 = int.Parse(Console.ReadLine());
-            Pocion pocionSeleccionada = Jugador.Inventario.Items[Elección2 - 1] as Pocion;
-            pocionSeleccionada.Usar(Jugador);
-            Jugador.Inventario.QuitarItem(pocionSeleccionada);
+            if (Jugador.Inventario.Items[Elección2 - 1] is IUsable)
+            {
+                IUsable pocionSeleccionada = Jugador.Inventario.Items[Elección2 - 1] as IUsable;
+                pocionSeleccionada.Usar(Jugador);
+                Jugador.Inventario.QuitarItem(Jugador.Inventario.Items[Elección2 - 1]);
+            }
+            else
+            {
+                Console.WriteLine("No puedes usar un equipo directamente, debes equiparlo primero.");
+            }
             break;
         case 5:
             MostrarInventario(Jugador);
             int Elección3 = int.Parse(Console.ReadLine());
-            Item itemSeleccionado = Jugador.Inventario.Items[Elección3 - 1];
-            if (itemSeleccionado is IEquipable equipo)
+            if (Jugador.Inventario.Items[Elección3 - 1] is IEquipable)
             {
-                equipo.Equipar(Jugador);
-                Jugador.Inventario.QuitarItem(equipo as Equipo);
+                IEquipable equipoSeleccionado = Jugador.Inventario.Items[Elección3 - 1] as IEquipable;
+                equipoSeleccionado.Equipar(Jugador);
+            }
+            else
+            {
+                Console.WriteLine("No puedes equipar un ítem que no sea equipable.");
             }
             break;
         case 6:
             MostrarInventario(Jugador);
             int Elección4 = int.Parse(Console.ReadLine());
-            Equipo equipoSeleccionado2 = Jugador.Inventario.Items[Elección4 - 1] as Equipo;
-            equipoSeleccionado2.Desequipar(Jugador);
-            Jugador.Inventario.AgregarItem(equipoSeleccionado2);
+            if (Jugador.Inventario.Items[Elección4 - 1] is IEquipable)
+            {
+                IEquipable equipoSeleccionado = Jugador.Inventario.Items[Elección4 - 1] as IEquipable;
+                equipoSeleccionado.Desequipar(Jugador);
+            }
+            else
+            {
+                Console.WriteLine("No puedes desequipar un ítem que no sea equipable.");
+            }
             break;
     }
 }

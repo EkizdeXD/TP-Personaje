@@ -12,14 +12,20 @@ namespace TP_Personaje
 
         public override void Desequipar(Personaje jugador)
         {
-            Equipado = false;
-            jugador.Defensa = jugador.Defensa - Defensa;
+            if (Equipado)
+            {
+                Equipado = false;
+                jugador.Defensa = jugador.Defensa - Defensa;
+            }
         }
 
         public override void Equipar(Personaje jugador)
         {
-            Equipado = true;
-            jugador.Defensa = jugador.Defensa + Defensa;
+            if (!Equipado)
+            {
+                Equipado = true;
+                jugador.Defensa = jugador.Defensa + Defensa;
+            }
         }
 
         public override string ToString()

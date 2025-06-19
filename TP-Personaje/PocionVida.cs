@@ -20,8 +20,8 @@ namespace TP_Personaje
                 {
                     VidaRestaurada = personaje.VidaMax;
                 }
+                personaje.Vida = VidaRestaurada;
             }
-            personaje.Vida = VidaRestaurada;
             return VidaRestaurada;
         }
 

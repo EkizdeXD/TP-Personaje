@@ -20,8 +20,8 @@ namespace TP_Personaje
                 {
                     ManaRestaurado = personaje.ManaMax;
                 }
+                personaje.Mana = ManaRestaurado;
             }
-            personaje.Mana = ManaRestaurado;
             return ManaRestaurado;
         }
 
